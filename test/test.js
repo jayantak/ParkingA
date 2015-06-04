@@ -9,7 +9,7 @@ describe('Parking', function()
     var spaceTest = new Array();
     pLot.initialise();
     spaceTest = pLot.parking("AAA", spaceTest);
-    assert.equal(spaceTest[0], "AAA", spaceTest);
+    assert.equal(spaceTest[0], "AAA");
 
   })
 
@@ -58,7 +58,6 @@ describe('Parking', function()
     {
       testID = 2*i;
       spaceTest = pLot.parking(testID.toString(), spaceTest);
-
     }
     assert.equal(pLot.checkFull(), 1);
   })
@@ -72,7 +71,6 @@ describe('Parking', function()
     {
       testID = 2*i;
       spaceTest = pLot.parking(testID.toString(), spaceTest);
-
     }
     spaceTest = pLot.unParking("2", spaceTest);
     assert.equal(pLot.checkFull(), 0);
