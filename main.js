@@ -7,7 +7,6 @@ var parkingLot = function()
 
   parkingLot.parking = function(id, spaces)
   {
-    //'use strict';
     for(i = 0; i<=spaces.length; i++)
     {
       if(spaces[i]==id)
@@ -28,7 +27,6 @@ var parkingLot = function()
 
   parkingLot.unParking = function(id, spaces)
   {
-    // 'use strict';
     var found = 0;
     for(i=0; i<spaces.length; i++)
     {
@@ -42,6 +40,7 @@ var parkingLot = function()
     }
     // if(found == 0)
       // alert("Car not found. Check Car ID and try again.");
+
       return spaces;
 }
 

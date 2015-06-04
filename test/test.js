@@ -22,6 +22,25 @@ describe('Parking', function()
   })
   it('When a spot is used, all spots before it must be occupied', function()
   {
+    var spaceTest = new Array();
+    var testLength = 20, testID, i;
+    for(i = 0; i<testLength; i++)
+    {
+      testID = 2*i;
+      spaceTest = pLot.parking(testID.toString(), spaceTest);
+    }
+    testID-=6;
+    spaceTest = pLot.unParking(testID.toString(), spaceTest);
+    testID-=6;
+    spaceTest = pLot.unParking(testID.toString(), spaceTest);
 
+    spaceTest = pLot.parking("TEST", spaceTest);
+
+    i = 0;
+
+    while(spaceTest[i++] != "TEST")
+    {
+      assert.notEqual(spaceTest[i], undefined);
+    }
   })
 });
