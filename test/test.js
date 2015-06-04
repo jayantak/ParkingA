@@ -75,4 +75,17 @@ describe('Parking', function()
     spaceTest = pLot.unParking("2", spaceTest);
     assert.equal(pLot.checkFull(), 0);
   })
+
+  it('Correct spot must be returned when we search for a car', function()
+  {
+    var spaceTest = new Array();
+    pLot.initialise();
+    spaceTest = pLot.parking("AAA", spaceTest);
+    spaceTest = pLot.parking("BBB", spaceTest);
+    spaceTest = pLot.unParking("AAA", spaceTest);
+    assert.equal(pLot.findCar("AAA", spaceTest), -1, 'Unparked cars do not register as not found');
+    assert.equal(pLot.findCar("BBB", spaceTest), 1, 'Parked car not found in right spot');
+  })
+
+
 });
