@@ -45,37 +45,39 @@ parkingLot.checkFull = function()
 
 }
 
-  parkingLot.parking = function(id, spaces)
+parkingLot.parking = function(id, spaces)
+{
+  for(i = 0; (i<=spaces.length)&&(parkingLot.checkFull()==0); i++)
   {
-    for(i = 0; (i<=spaces.length)&&(parkingLot.checkFull()==0); i++)
+    if(spaces[i]==id)
     {
-      if(spaces[i]==id)
-      {
-        break;
-      }
-      if(spaces[i]==undefined)
-      {
-        carsParked++;
-        spaces[i] = id;
-        parkingLot.checkFull();
-        break;
-      }
-
+      break;
     }
+    if(spaces[i]==undefined)
+    {
+      carsParked++;
+      spaces[i] = id;
+      parkingLot.checkFull();
+      break;
+    }
+
+  }
+  return spaces;
+}
+
+parkingLot.unParking = function(id, spaces)
+{
+  var spot = parkingLot.findCar(id, spaces);
+  if(spot==-1)
+  {
     return spaces;
   }
-
-  parkingLot.unParking = function(id, spaces)
-  {
-    var spot = parkingLot.findCar(id, spaces);
-    if(spot==-1)
-    {
-      return spaces;
-    }
-    spaces[spot] = undefined;
-    carsParked--;
-    parkingLot.checkFull();
-    return spaces;
+  spaces[spot] = undefined;
+  carsParked--;
+  parkingLot.checkFull();
+  // spaces[spot] = spaces[spaces.length - 1];
+  // spaces[spaces.length - 1] = undefined;
+  return spaces;
 }
 
 module.exports = parkingLot;

@@ -6,6 +6,7 @@ describe('Parking', function()
 
   it('Spot should contain current car once parked', function()
   {
+    debugger;
     var spaceTest = new Array();
     pLot.initialise();
     spaceTest = pLot.parking("AAA", spaceTest);
@@ -38,11 +39,8 @@ describe('Parking', function()
     spaceTest = pLot.unParking(testID.toString(), spaceTest);
     testID-=2;
     spaceTest = pLot.unParking(testID.toString(), spaceTest);
-
     spaceTest = pLot.parking("TEST", spaceTest);
-
     i = 0;
-
     while(spaceTest[i++] != "TEST")
     {
       assert.notEqual(spaceTest[i], undefined);
