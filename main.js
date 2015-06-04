@@ -1,9 +1,9 @@
 var parkingLot = function()
 {
-  var max = 3;
-  var fsb = 0;
-  var carsParked = 0;
-  var spaces = new Array();
+  var max;
+  var fsb;
+  var carsParked;
+  var spaces;
   }
 
 parkingLot.initialise = function()
