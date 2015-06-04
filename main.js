@@ -1,8 +1,7 @@
 var abc = {};
 var spaces;
 
-  spaces = new Array();
-
+spaces = new Array();
 
 abc.parking = function(id, spaces)
 {
@@ -11,7 +10,7 @@ abc.parking = function(id, spaces)
   {
     if(spaces[i]==id)
     {
-       alert("Car ID repeat. Please try again.")
+      // alert("Car ID repeat. Please try again.")
       break;
     }
     if(spaces[i]==undefined)
@@ -28,18 +27,18 @@ abc.parking = function(id, spaces)
 abc.unParking = function(id, spaces)
 {
   // 'use strict';
-  var flag = 0;
+  var found = 0;
   for(i=0; i<spaces.length; i++)
   {
     if(spaces[i]==id)
     {
       spaces[i] = undefined;
       // document.getElementById('output2').innerHTML = "Your car was found at spot number "+(i+1);
-      flag = 1;
+      found = 1;
       break;
     }
   }
-  if(!flag)
+  // if(found == 0)
     // alert("Car not found. Check Car ID and try again.");
     return spaces;
 }
