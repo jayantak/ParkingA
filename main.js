@@ -1,46 +1,48 @@
-var abc = {};
-var spaces;
-
-spaces = new Array();
-
-abc.parking = function(id, spaces)
+var parkingLot = function()
 {
-  //'use strict';
-  for(i = 0; i<=spaces.length; i++)
-  {
-    if(spaces[i]==id)
-    {
-      // alert("Car ID repeat. Please try again.")
-      break;
-    }
-    if(spaces[i]==undefined)
-    {
-      spaces[i] = id;
-      // document.getElementById('output1').innerHTML = "The car has been parked at spot number "+(i+1);
-      break;
-    }
-
+  var spaces = new Array();
   }
-  return spaces;
-}
 
-abc.unParking = function(id, spaces)
-{
-  // 'use strict';
-  var found = 0;
-  for(i=0; i<spaces.length; i++)
+
+
+  parkingLot.parking = function(id, spaces)
   {
-    if(spaces[i]==id)
+    //'use strict';
+    for(i = 0; i<=spaces.length; i++)
     {
-      spaces[i] = undefined;
-      // document.getElementById('output2').innerHTML = "Your car was found at spot number "+(i+1);
-      found = 1;
-      break;
+      if(spaces[i]==id)
+      {
+        // alert("Car ID repeat. Please try again.")
+        break;
+      }
+      if(spaces[i]==undefined)
+      {
+        spaces[i] = id;
+        // document.getElementById('output1').innerHTML = "The car has been parked at spot number "+(i+1);
+        break;
+      }
+
     }
-  }
-  // if(found == 0)
-    // alert("Car not found. Check Car ID and try again.");
     return spaces;
+  }
+
+  parkingLot.unParking = function(id, spaces)
+  {
+    // 'use strict';
+    var found = 0;
+    for(i=0; i<spaces.length; i++)
+    {
+      if(spaces[i]==id)
+      {
+        spaces[i] = undefined;
+        // document.getElementById('output2').innerHTML = "Your car was found at spot number "+(i+1);
+        found = 1;
+        break;
+      }
+    }
+    // if(found == 0)
+      // alert("Car not found. Check Car ID and try again.");
+      return spaces;
 }
 
-module.exports = abc;
+module.exports = parkingLot;
