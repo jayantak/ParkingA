@@ -6,9 +6,9 @@ var parkingLot = function()
   var freeSpaces;
   }
 
-parkingLot.initialise = function()
+parkingLot.initialise = function(size)
 {
-  max = 5;
+  max = size;
   carsParked = 0;
   spaces = new Object();
   freeSpaces = new Array();
@@ -17,6 +17,22 @@ parkingLot.initialise = function()
     freeSpaces[i] = (max-i)+1;
   }
 }
+
+parkingLot.isFree= function(num)
+{
+  l=freeSpaces.length-1;
+  while(l>0)
+  {
+    if(freeSpaces[l]==num)
+    {
+
+      return 1;
+    }
+    l--;
+  }
+  return 0;
+}
+
 
 parkingLot.checkLimit = function()
 {

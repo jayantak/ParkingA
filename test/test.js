@@ -1,12 +1,12 @@
 var assert = require('assert');
 var pLot = require('../main.js');
 
-describe('Parking', function()
+describe('Parking Testing', function()
 {
 
   it('Spot should contain current car once parked', function()
   {
-    pLot.initialise();
+    pLot.initialise(2);
     pLot.parking("AAA");
     assert.equal(pLot.findCar("AAA"), "1");
 
@@ -14,14 +14,12 @@ describe('Parking', function()
 
   it('Spot should be empty when unparked and other spaces must remain the same', function()
   {
-    pLot.initialise();
+    pLot.initialise(5);
     pLot.parking("AAA");
     pLot.parking("BBB");
     pLot.unParking("AAA");
-    pLot.parking("CCC");
-    assert.equal(pLot.findCar("AAA"), -1);
-    assert.equal(pLot.findCar("BBB"), 2);
-    assert.equal(pLot.findCar("CCC"), 1);
+    assert.equal(pLot.isFree(1),1);
+    assert.equal(pLot.isFree(2),0);
   })
 
   // it('When a spot is used, all spots before it must be occupied', function()
@@ -48,7 +46,7 @@ describe('Parking', function()
 
   it('Check should return full when parking lot is full', function()
   {
-    pLot.initialise();
+    pLot.initialise(5);
     var testLength = pLot.checkLimit();
     for(i = 0; i<testLength; i++)
     {
@@ -60,7 +58,7 @@ describe('Parking', function()
 
   it('Check should return not full when there is space', function()
   {
-    pLot.initialise();
+    pLot.initialise(5);
     var testLength = pLot.checkLimit();
     for(i = 0; i<testLength; i++)
     {
@@ -73,7 +71,7 @@ describe('Parking', function()
 
   it('Correct spot must be returned when we search for a car', function()
   {
-    pLot.initialise();
+    pLot.initialise(5);
     pLot.parking("AAA");
     pLot.parking("BBB");
     pLot.unParking("AAA");
