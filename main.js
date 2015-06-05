@@ -4,6 +4,7 @@ var parkingLot = function()
   var fsb;
   var carsParked;
   var spaces;
+  var freeSpaces;
   }
 
 parkingLot.initialise = function()
@@ -11,7 +12,13 @@ parkingLot.initialise = function()
   max = 5;
   fsb = 0;
   carsParked = 0;
-  spaces = new Array();
+  spaces = new Object();
+  freeSpaces = new Array();
+  debugger;
+  for(i = 1; i<=max; i++)
+  {
+    freeSpaces[i] = (max-i)+1;
+  }
 }
 
 parkingLot.checkLimit = function()
@@ -19,16 +26,30 @@ parkingLot.checkLimit = function()
   return max;
 }
 
-parkingLot.findCar = function(id, spaces)
+parkingLot.carAt = function(slot)
 {
-  for(i=0; i<spaces.length; i++)
+  debugger;
+    return spaces.indexOf(slot);
+}
+
+parkingLot.findCar = function(id)
+{
+  if(spaces[id])
   {
-    if(spaces[i]==id)
-    {
-      return i;
-    }
+    return spaces[id];
   }
-  return -1;
+  else
+  {
+    return -1;
+  }
+  // for(i=0; i<spaces.length; i++)
+  // {
+  //   if(spaces[i]==id)
+  //   {
+  //     return i;
+  //   }
+  // }
+  // return -1;
 }
 
 parkingLot.checkFull = function()
@@ -45,39 +66,46 @@ parkingLot.checkFull = function()
 
 }
 
-parkingLot.parking = function(id, spaces)
+parkingLot.parking = function(id)
 {
-  for(i = 0; (i<=spaces.length)&&(parkingLot.checkFull()==0); i++)
+  if((spaces[id])||(parkingLot.checkFull()))
   {
-    if(spaces[i]==id)
-    {
-      break;
-    }
-    if(spaces[i]==undefined)
-    {
-      carsParked++;
-      spaces[i] = id;
-      parkingLot.checkFull();
-      break;
-    }
-
+    return;
   }
-  return spaces;
+  carsParked++;
+  spaces[id] = freeSpaces.pop();
+  parkingLot.checkFull();
+
+  // for(i = 0; (i<=spaces.length)&&(parkingLot.checkFull()==0); i++)
+  // {
+  //   if(spaces[i]==id)
+  //   {
+  //     break;
+  //   }
+  //   if(spaces[i]==undefined)
+  //   {
+  //     carsParked++;
+  //     spaces[i] = id;
+  //     parkingLot.checkFull();
+  //     break;
+  //   }
+
+
 }
 
-parkingLot.unParking = function(id, spaces)
+parkingLot.unParking = function(id)
 {
-  var spot = parkingLot.findCar(id, spaces);
-  if(spot==-1)
-  {
-    return spaces;
-  }
-  spaces[spot] = undefined;
+  // var spot = parkingLot.findCar(id);
+  // if(spot==-1)
+  // {
+  //   return;
+  // }
+  freeSpaces.push(spaces[id])
   carsParked--;
+  delete(spaces[id]);
   parkingLot.checkFull();
   // spaces[spot] = spaces[spaces.length - 1];
   // spaces[spaces.length - 1] = undefined;
-  return spaces;
 }
 
 module.exports = parkingLot;
