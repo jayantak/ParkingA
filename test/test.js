@@ -8,7 +8,6 @@ describe('Parking', function()
   {
     pLot.initialise();
     pLot.parking("AAA");
-    debugger;
     assert.equal(pLot.findCar("AAA"), "1");
 
   })
@@ -25,26 +24,27 @@ describe('Parking', function()
     assert.equal(pLot.findCar("CCC"), 1);
   })
 
-  it('When a spot is used, all spots before it must be occupied', function()
-  {
-    pLot.initialise();
-    var testLength = pLot.checkLimit(), testID, i;
-    for(i = 0; i<testLength; i++)
-    {
-      testID = 2*i;
-      pLot.parking(testID.toString());
-    }
-    testID-=2;
-    pLot.unParking(testID.toString());
-    testID-=2;
-    pLot.unParking(testID.toString());
-    pLot.parking("TEST");
-    i = 0;
-    while(pLot.carAt(i++) != "TEST")
-    {
-      assert.notEqual(pLot.carAt(i), undefined);
-    }
-  })
+  // it('When a spot is used, all spots before it must be occupied', function()
+  // {
+  //   pLot.initialise();
+  //
+    // var testLength = pLot.checkLimit(), testID, i;
+    // for(i = 0; i<testLength; i++)
+    // {
+    //   testID = 2*i;
+    //   pLot.parking(testID.toString());
+    // }
+    // testID-=2;
+    // pLot.unParking(testID.toString());
+    // testID-=2;
+    // pLot.unParking(testID.toString());
+    // pLot.parking("TEST");
+    // i = 0;
+    // while(pLot.carAt(i++) != "TEST")
+    // {
+    //   assert.notEqual(pLot.carAt(i), undefined);
+    // }
+  // })
 
   it('Check should return full when parking lot is full', function()
   {
@@ -78,10 +78,7 @@ describe('Parking', function()
     pLot.parking("BBB");
     pLot.unParking("AAA");
     assert.equal(pLot.findCar("AAA"), -1, 'Unparked cars do not register as not found');
-    debugger;
     assert.equal(pLot.findCar("BBB"), 2, 'Parked car not found in right spot');
-    debugger;
   })
-
 
 });
